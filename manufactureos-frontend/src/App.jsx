@@ -6,6 +6,7 @@ import Employees from "./Employees";
 import Vendors from "./Vendors";
 import History from "./History";
 import Alerts from "./Alerts";
+import Inventory from "./Inventory";
 import { RiMenuLine, RiBellLine, RiAlertLine, RiMoneyDollarCircleLine, RiArchiveLine, RiLogoutBoxLine } from "react-icons/ri";
 
 
@@ -401,6 +402,7 @@ export default function App() {
 {page === "Vendors" && <Vendors />}
 {page === "History" && <History />}
 {page === "Alerts" && <Alerts />}
+{page === "Inventory" && <Inventory />}
 
       </div>
 
