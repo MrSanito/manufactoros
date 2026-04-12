@@ -37,46 +37,48 @@ const [form, setForm] = useState({
       <h1 className="text-2xl font-bold mb-6">Production Tracker</h1>
 
       {/* TOP BAR */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
         <input
           className="flex-1 border rounded-lg px-4 py-2"
           placeholder="Search by Order ID or Client..."
         />
-        <select
-  value={priorityFilter}
-  onChange={(e) => setPriorityFilter(e.target.value)}
-  className="border rounded-lg px-3 py-2"
->
-  <option value="All">All Priorities</option>
-  <option value="HIGH">High</option>
-  <option value="MEDIUM">Medium</option>
-  <option value="LOW">Low</option>
-</select>
-        <select
-  value={vendorFilter}
-  onChange={(e) => setVendorFilter(e.target.value)}
-  className="border rounded-lg px-3 py-2"
->
-  <option value="All">All Vendors</option>
-  {vendors.map(v => (
-    <option key={v} value={v}>{v}</option>
-  ))}
-</select>
+        <div className="flex gap-4">
+          <select
+            value={priorityFilter}
+            onChange={(e) => setPriorityFilter(e.target.value)}
+            className="border rounded-lg px-3 py-2 flex-1 md:flex-none w-1/2 md:w-auto"
+          >
+            <option value="All">All Priorities</option>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+          </select>
+          <select
+            value={vendorFilter}
+            onChange={(e) => setVendorFilter(e.target.value)}
+            className="border rounded-lg px-3 py-2 flex-1 md:flex-none w-1/2 md:w-auto"
+          >
+            <option value="All">All Vendors</option>
+            {vendors.map(v => (
+              <option key={v} value={v}>{v}</option>
+            ))}
+          </select>
+        </div>
 
         <button
-  onClick={() => setShowForm(true)}
-  className="bg-green-500 text-white px-4 py-2 rounded-lg"
->
-  + Add New Order
-</button>
+          onClick={() => setShowForm(true)}
+          className="bg-green-500 text-white px-4 py-2 rounded-lg w-full md:w-auto"
+        >
+          + Add New Order
+        </button>
 
       </div>
 
       {/* KANBAN LANES */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="flex md:grid md:grid-cols-5 gap-4 overflow-x-auto pb-4 snap-x relative">
 
         {stages.map((stage) => (
-          <div key={stage} className="bg-gray-50 rounded-xl p-3">
+          <div key={stage} className="bg-gray-50 rounded-xl p-3 min-w-[280px] md:min-w-0 flex-shrink-0 snap-center md:snap-align-none">
 
             {/* HEADER */}
             <div className="flex justify-between items-center mb-3">
@@ -157,7 +159,7 @@ const [form, setForm] = useState({
 
       </div>
 
-<div className="grid grid-cols-2 gap-6 mt-8">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
 
   {/* MACHINE AVAILABILITY */}
   <div className="bg-white p-6 rounded-xl shadow-sm">

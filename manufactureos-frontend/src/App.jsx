@@ -1,24 +1,39 @@
 import { useState } from "react";
 import aiIcon from "./assets/AI.png";
 import Production from "./Production";
+import Finance from "./Finance";
+import Employees from "./Employees";
+import Vendors from "./Vendors";
+import History from "./History";
+import Alerts from "./Alerts";
+import { RiMenuLine, RiBellLine, RiAlertLine, RiMoneyDollarCircleLine, RiArchiveLine, RiLogoutBoxLine } from "react-icons/ri";
+
 
 export default function App() {
   const [page, setPage] = useState("Dashboard");
   const [selectedDay, setSelectedDay] = useState(null);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 overflow-x-hidden">
+      {/* Overlay for mobile sidebar */}
+      {isSidebarOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/50 z-40" 
+          onClick={() => setIsSidebarOpen(false)} 
+        />
+      )}
 
       {/* SIDEBAR */}
-      <div className="w-60 min-w-[240px] bg-slate-900 text-white p-5">	
+      <div className={`fixed inset-y-0 left-0 bg-slate-900 text-white p-5 w-60 z-50 transform transition-transform duration-300 md:relative md:translate-x-0 overflow-y-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>	
         <h2 className="text-xl font-bold">ManufactureOS</h2>
 
         <div className="mt-6 font-semibold space-y-2">
           {["Dashboard","Production","Finance","Employees","Vendors","History","Alerts","Inventory"].map((item) => (
             <p
               key={item}
-              onClick={() => setPage(item)}
+              onClick={() => { setPage(item); setIsSidebarOpen(false); }}
               className={`p-2 rounded cursor-pointer ${
                 page === item ? "bg-green-500" : "hover:bg-slate-700"
               }`}
@@ -29,29 +44,23 @@ export default function App() {
         </div>
       </div>
 
-<div className="fixed bottom-6 right-6 z-50">
-<button
-  onClick={() => alert("AI Clicked")}
-  className="bg-white p-3 rounded-full shadow-lg border hover:scale-150 transition"
->
-<img src={aiIcon} alt="AI" className="w-10 h-10"/>
-  </button>
-
-</div>
-
 
       {/* MAIN */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-4 md:p-6 w-full md:max-w-[calc(100vw-240px)]">
 
-<div className="flex justify-end items-center gap-4 mb-4">
-
+<div className="flex justify-between md:justify-end items-center gap-4 mb-4">
+  <button className="md:hidden text-2xl hover:text-gray-600 focus:outline-none" onClick={() => setIsSidebarOpen(true)}>
+    <RiMenuLine className="w-6 h-6" />
+  </button>
+  
+  <div className="flex items-center gap-4">
   {/* BELL */}
   <div className="relative">
     <button
       onClick={() => setShowNotifications(!showNotifications)}
       className="bg-white p-2 rounded-full shadow-sm hover:bg-gray-100"
     >
-      🔔
+      <RiBellLine className="w-5 h-5 text-slate-600" />
     </button>
 
     {/* PANEL */}
@@ -60,19 +69,19 @@ export default function App() {
         <h3 className="font-semibold mb-2">Notifications</h3>
 
         <div className="text-sm space-y-2">
-          <p>⚠️ ORD-2402 delayed</p>
-          <p>💰 Payment pending: Fashion Hub</p>
-          <p>📦 Low stock: Thread</p>
+          <p className="flex items-center gap-2"><RiAlertLine className="text-amber-500 shrink-0" /> ORD-2402 delayed</p>
+          <p className="flex items-center gap-2"><RiMoneyDollarCircleLine className="text-emerald-500 shrink-0" /> Payment pending: Fashion Hub</p>
+          <p className="flex items-center gap-2"><RiArchiveLine className="text-blue-500 shrink-0" /> Low stock: Thread</p>
         </div>
       </div>
     )}
   </div>
 
   {/* AUTH BUTTON */}
-  <button className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm">
-    Sign Out
+  <button className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+    <RiLogoutBoxLine className="w-4 h-4" /> Sign Out
   </button>
-
+  </div>
 </div>
 
 
@@ -80,7 +89,7 @@ export default function App() {
           <div>
             <h1 className="text-2xl font-bold">Operations Dashboard</h1>
 
-            <div className="mt-6 grid grid-cols-4 gap-6">
+            <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Total Orders</p>
@@ -109,7 +118,7 @@ export default function App() {
             </div>
 
             {/* ROW */}
-            <div className="grid grid-cols-2 gap-6 mt-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8">
 
               {/* PRODUCTION */}
 <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -140,7 +149,8 @@ export default function App() {
       <span className="bg-green-200 font-semibold px-3 py-1 rounded">Cutting</span>
       <span>→</span>
       <span className="bg-blue-500 text-white font-semibold border-4 border-red-500 px-3 py-1 rounded flex items-center gap-1">
-  Stitching ⚠️</span>
+      <span className="flex items-center gap-1">Stitching <RiAlertLine className="text-red-300" /></span>
+      </span>
       <span>→</span>
       <span className="bg-gray-200 font-semibold px-3 py-1 rounded">Finishing</span>
       <span>→</span>
@@ -183,7 +193,7 @@ export default function App() {
 
         
 
-<div className="grid grid-cols-3 gap-6 mt-8">
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
 
   {/* CLIENT PAYMENTS */}
 <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -299,7 +309,7 @@ export default function App() {
 
 </div>
 
-<div className="grid grid-cols-2 gap-6 mt-8">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8">
 
   {/* INVENTORY */}
   <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -386,6 +396,12 @@ export default function App() {
 </div>
 )}
 {page === "Production" && <Production />}	
+{page === "Finance" && <Finance />}	
+{page === "Employees" && <Employees />}
+{page === "Vendors" && <Vendors />}
+{page === "History" && <History />}
+{page === "Alerts" && <Alerts />}
+
       </div>
 
 
