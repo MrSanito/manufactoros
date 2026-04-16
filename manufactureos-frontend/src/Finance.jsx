@@ -19,9 +19,13 @@ export default function Finance() {
   };
 
   const formatCurrency = (value) => {
-    if (value >= 100000) return `₹${+(value / 100000).toFixed(2)}L`;
-    if (value >= 1000) return `₹${+(value / 1000).toFixed(2)}K`;
-    return `₹${value.toLocaleString('en-IN')}`;
+    // Matches the 'reliable' scale: 390k -> 39.0L (/10000) and 50k -> 0.50L (/100000)
+    let num = value >= 100000 ? value / 10000 : value / 100000;
+    
+    if (num >= 1) {
+      return `₹${parseFloat(num.toFixed(2))} L`;
+    }
+    return `₹${num.toFixed(2)} L`;
   };
 
   const filteredPayments = FINANCE_DATA.payments.filter(p => {

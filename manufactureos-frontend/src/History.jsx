@@ -10,7 +10,7 @@ const CLIENTS = [
   {
     id: "CLT-001", name: "Fashion Hub Inc.", avatar: "FH", avatarColor: "#4F46E5",
     specialty: "High-Volume Apparel", rating: 4.8, orderFrequency: "Weekly",
-    totalOrders: 142, totalRevenue: "₹24.5L", pendingPayments: "₹45,000", status: "active",
+    totalOrders: 142, totalRevenue: "₹2.45 L", pendingPayments: "₹0.45 L", status: "active",
     contact: {
       phone: "+91 98765 43210", email: "procurement@fashionhub.com",
       address: "B-42, Okhla Phase III, New Delhi, 110020",
@@ -18,10 +18,10 @@ const CLIENTS = [
     },
     orders: [
       {
-        id: "ORD-2401", status: "Delivered", amount: "₹85,000", date: "Apr 2, 2026",
+        id: "ORD-2401", status: "Delivered", amount: "₹0.85 L", date: "Apr 2, 2026",
         invoiceDate: "Mar 30, 2026", invoiceId: "INV-2401", timeline: "Jan 15 - Feb 20, 2026",
         complexity: "Medium", priority: "High", fabric: "Premium Cotton (200 GSM)",
-        rawMaterialCost: "₹32,400",
+        rawMaterialCost: "₹0.32 L",
         stages: [
           { label: "Fabric Sourcing", status: "completed", date: "Jan 15", delay: null },
           { label: "Cutting",         status: "completed", date: "Jan 22", delay: "2 days delay - Fabric delivery lag" },
@@ -34,10 +34,10 @@ const CLIENTS = [
         paymentDates: ["Feb 22, 2026", "Mar 05, 2026"]
       },
       {
-        id: "ORD-2395", status: "Delivered", amount: "₹1,20,000", date: "Mar 28, 2026",
+        id: "ORD-2395", status: "Delivered", amount: "₹1.2 L", date: "Mar 28, 2026",
         invoiceDate: "Mar 20, 2026", invoiceId: "INV-2395", timeline: "Jan 5 - Feb 10, 2026",
         complexity: "High", priority: "Medium", fabric: "Linen Blend (Soft)",
-        rawMaterialCost: "₹58,000",
+        rawMaterialCost: "₹0.58 L",
         stages: [
           { label: "Design Approval",  status: "completed", date: "Jan 05", delay: null },
           { label: "Raw Sourcing",     status: "completed", date: "Jan 12", delay: null },
@@ -55,7 +55,7 @@ const CLIENTS = [
   {
     id: "CLT-002", name: "StyleCraft Ltd", avatar: "SC", avatarColor: "#10B981",
     specialty: "Premium Retailers", rating: 4.5, orderFrequency: "Bi-Weekly",
-    totalOrders: 68, totalRevenue: "₹12.8L", pendingPayments: "₹0", status: "active",
+    totalOrders: 68, totalRevenue: "₹1.28 L", pendingPayments: "₹0", status: "active",
     contact: {
       phone: "+91 88221 10044", email: "contact@stylecraft.in",
       address: "Sector 63, Noida, Uttar Pradesh, 201301",
@@ -63,10 +63,10 @@ const CLIENTS = [
     },
     orders: [
       {
-        id: "ORD-2398", status: "Delivered", amount: "₹42,000", date: "Apr 5, 2026",
+        id: "ORD-2398", status: "Delivered", amount: "₹0.42 L", date: "Apr 5, 2026",
         invoiceDate: "Apr 2, 2026", invoiceId: "INV-2398", timeline: "Jan 10 - Feb 15, 2026",
         complexity: "Low", priority: "High", fabric: "Organic Jersey",
-        rawMaterialCost: "₹15,200",
+        rawMaterialCost: "₹0.15 L",
         stages: [
           { label: "Sourcing",   status: "completed", date: "Jan 12", delay: null },
           { label: "Production", status: "completed", date: "Feb 10", delay: "3 days delay - Worker shortage" },

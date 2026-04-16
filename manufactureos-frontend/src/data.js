@@ -6,18 +6,18 @@ export const VENDORS_LIST = [
     availability: "available",
     rating: 4.8,
     activeOrders: 2,
-    pendingAmount: "₹42L",
+    pendingAmount: "₹4.2 L",
     contact: { phone: "+91 98765 11111", email: "kumar.textiles@vendor.com", address: "Industrial Area, Sector 12, Delhi" },
     orders: [
       { id: "ORD-2401", due: "Apr 8",  status: "In Progress" },
       { id: "ORD-2405", due: "Apr 15", status: "Ready" },
     ],
-    costBreakdown: { labour: "₹15L", materials: "₹22L", overhead: "₹5L" },
-    paymentSummary: { totalPaid: "₹157L", pending: "₹42L" },
+    costBreakdown: { labour: "₹0.15 L", materials: "₹0.22 L", overhead: "₹0.05 L" },
+    paymentSummary: { totalPaid: "₹1.57 L", pending: "₹0.42 L" },
     paymentHistory: [
-      { amount: "₹1,50,000", date: "Mar 28, 2026", status: "Paid" },
-      { amount: "₹1,25,000", date: "Mar 15, 2026", status: "Paid" },
-      { amount: "₹1,82,000", date: "Mar 1, 2026",  status: "Paid" },
+      { amount: "₹0.15 L", date: "Mar 28, 2026", status: "Paid" },
+      { amount: "₹0.12 L", date: "Mar 15, 2026", status: "Paid" },
+      { amount: "₹0.18 L", date: "Mar 1, 2026",  status: "Paid" },
     ],
     review: { rating: 4.8, text: "Excellent quality and timely delivery. Highly recommended for bulk orders." },
   },
@@ -28,17 +28,17 @@ export const VENDORS_LIST = [
     availability: "busy",
     rating: 4.5,
     activeOrders: 2,
-    pendingAmount: "₹25L",
+    pendingAmount: "₹2.5 L",
     contact: { phone: "+91 98765 22222", email: "singh@vendor.com", address: "Sector 14, Okhla, Delhi" },
     orders: [
       { id: "ORD-2390", due: "Apr 10", status: "In Progress" },
       { id: "ORD-2395", due: "Apr 12", status: "In Progress" },
     ],
-    costBreakdown: { labour: "₹12L", materials: "₹11L", overhead: "₹2L" },
-    paymentSummary: { totalPaid: "₹124L", pending: "₹25L" },
+    costBreakdown: { labour: "₹0.12 L", materials: "₹0.11 L", overhead: "₹0.02 L" },
+    paymentSummary: { totalPaid: "₹1.24 L", pending: "₹0.25 L" },
     paymentHistory: [
-      { amount: "₹1,00,000", date: "Mar 20, 2026", status: "Paid" },
-      { amount: "₹2,24,000", date: "Feb 15, 2026", status: "Paid" },
+      { amount: "₹0.10 L", date: "Mar 20, 2026", status: "Paid" },
+      { amount: "₹0.22 L", date: "Feb 15, 2026", status: "Paid" },
     ],
     review: { rating: 4.5, text: "Good stitching, but sometimes delayed during peak seasons." },
   },
@@ -49,15 +49,15 @@ export const VENDORS_LIST = [
     availability: "available",
     rating: 4.7,
     activeOrders: 1,
-    pendingAmount: "₹20L",
+    pendingAmount: "₹2 L",
     contact: { phone: "+91 98765 33333", email: "patel@vendor.com", address: "Sector 1, Surat, Gujarat" },
     orders: [
       { id: "ORD-2410", due: "May 2", status: "Ready" },
     ],
-    costBreakdown: { labour: "₹15L", materials: "₹2L", overhead: "₹3L" },
-    paymentSummary: { totalPaid: "₹82L", pending: "₹20L" },
+    costBreakdown: { labour: "₹0.15 L", materials: "₹0.02 L", overhead: "₹0.03 L" },
+    paymentSummary: { totalPaid: "₹0.82 L", pending: "₹0.20 L" },
     paymentHistory: [
-      { amount: "₹1,52,000", date: "Mar 10, 2026", status: "Paid" },
+      { amount: "₹0.15 L", date: "Mar 10, 2026", status: "Paid" },
     ],
     review: { rating: 4.7, text: "Very consistent quality control. Rarely find defects." },
   },
@@ -65,18 +65,18 @@ export const VENDORS_LIST = [
 
 export const FINANCE_DATA = {
   kpis: [
-    { title: "Total Revenue (YTD)", value: "₹482L", change: "+12.5%", up: true, dashboardLabel: "Revenue" },
-    { title: "Receivables Collected", value: "₹394L", change: "+8.2%", up: true },
-    { title: "Payables Due", value: "₹87L", change: "-5.3%", up: false },
-    { title: "Receivables Pending", value: "₹45L", change: "-2.1%", up: false, dashboardLabel: "Pending Payments" },
-    { title: "Profit (YTD)", value: "₹151L", change: "+15.2%", up: true },
+    { title: "Total Revenue (YTD)", value: "₹48.2 L", change: "+12.5%", up: true, dashboardLabel: "Revenue" },
+    { title: "Receivables Collected", value: "₹39.4 L", change: "+8.2%", up: true },
+    { title: "Payables Due", value: "₹8.7 L", change: "-5.3%", up: false },
+    { title: "Receivables Pending", value: "₹4.5 L", change: "-2.1%", up: false, dashboardLabel: "Pending Payments" },
+    { title: "Profit (YTD)", value: "₹15.1 L", change: "+15.2%", up: true },
   ],
   
   overview: {
     totalOrders: 2480,
     delayedOrders: 120,
-    revenue: "₹482L",
-    pendingPayments: "₹45L",
+    revenue: "₹48.2 L",
+    pendingPayments: "₹4.5 L",
   },
 
   performance: {
@@ -93,29 +93,29 @@ export const FINANCE_DATA = {
       { name: "Q2", Revenue: 2880000, Cost: 2150000 },
     ],
     topProfitOrders: [
-      { id: "ORD-2401", client: "Fashion Hub",     profit: "+₹52K" },
-      { id: "ORD-2399", client: "Urban Threads",   profit: "+₹48K" },
-      { id: "ORD-2406", client: "Modern Apparel",  profit: "+₹36K" },
-      { id: "ORD-2385", client: "StyleCraft",      profit: "+₹29K" },
-      { id: "ORD-2372", client: "Textile Masters", profit: "+₹21K" },
+      { id: "ORD-2401", client: "Fashion Hub",     profit: "+₹0.52 L" },
+      { id: "ORD-2399", client: "Urban Threads",   profit: "+₹0.48 L" },
+      { id: "ORD-2406", client: "Modern Apparel",  profit: "+₹0.36 L" },
+      { id: "ORD-2385", client: "StyleCraft",      profit: "+₹0.29 L" },
+      { id: "ORD-2372", client: "Textile Masters", profit: "+₹0.21 L" },
     ],
     topLossOrders: [
-      { id: "ORD-2391", client: "Beta Brand",    loss: "-₹18K" },
-      { id: "ORD-2384", client: "Local Retail",  loss: "-₹12K" },
-      { id: "ORD-2342", client: "Quick Fashion", loss: "-₹8.5K" },
-      { id: "ORD-2311", client: "Street Wear",   loss: "-₹6K" },
-      { id: "ORD-2298", client: "Active Gear",   loss: "-₹4.2K" },
+      { id: "ORD-2391", client: "Beta Brand",    loss: "-₹0.18 L" },
+      { id: "ORD-2384", client: "Local Retail",  loss: "-₹0.12 L" },
+      { id: "ORD-2342", client: "Quick Fashion", loss: "-₹0.08 L" },
+      { id: "ORD-2311", client: "Street Wear",   loss: "-₹0.06 L" },
+      { id: "ORD-2298", client: "Active Gear",   loss: "-₹0.04 L" },
     ]
   },
 
   payments: [
-    { client: "Fashion Hub Inc", order: "ORD-2401", orderValue: "₹185K", amount: "₹185K", status: "Paid", dueDate: "Apr 5, 2026" },
-    { client: "StyleCraft Ltd",  order: "ORD-2402", orderValue: "₹250K",  amount: "₹123K", status: "Partial", dueDate: "Apr 10, 2026" },
-    { client: "Urban Threads",   order: "ORD-2403", orderValue: "₹228K", amount: "₹228K", status: "Paid", dueDate: "Apr 8, 2026" },
-    { client: "Textile Masters", order: "ORD-2404", orderValue: "₹89K",   amount: "₹89K",  status: "Pending", dueDate: "Apr 12, 2026" },
-    { client: "Fashion Hub Inc", order: "ORD-2405", orderValue: "₹152K", amount: "₹152K", status: "Paid", dueDate: "Apr 15, 2026" },
-    { client: "Modern Apparel",  order: "ORD-2406", orderValue: "₹350K",  amount: "₹195K", status: "Partial", dueDate: "Apr 18, 2026" },
-    { client: "StyleCraft Ltd",  order: "ORD-2407", orderValue: "₹117K", amount: "₹117K", status: "Pending", dueDate: "Apr 20, 2026" },
+    { client: "Fashion Hub Inc", order: "ORD-2401", orderValue: "₹1.85 L", amount: "₹1.85 L", status: "Paid", dueDate: "Apr 5, 2026" },
+    { client: "StyleCraft Ltd",  order: "ORD-2402", orderValue: "₹2.5 L",  amount: "₹1.23 L", status: "Partial", dueDate: "Apr 10, 2026" },
+    { client: "Urban Threads",   order: "ORD-2403", orderValue: "₹2.28 L", amount: "₹2.28 L", status: "Paid", dueDate: "Apr 8, 2026" },
+    { client: "Textile Masters", order: "ORD-2404", orderValue: "₹0.08 L",   amount: "₹0.08 L",  status: "Pending", dueDate: "Apr 12, 2026" },
+    { client: "Fashion Hub Inc", order: "ORD-2405", orderValue: "₹1.52 L", amount: "₹1.52 L", status: "Paid", dueDate: "Apr 15, 2026" },
+    { client: "Modern Apparel",  order: "ORD-2406", orderValue: "₹3.5 L",  amount: "₹1.95 L", status: "Partial", dueDate: "Apr 18, 2026" },
+    { client: "StyleCraft Ltd",  order: "ORD-2407", orderValue: "₹1.17 L", amount: "₹1.17 L", status: "Pending", dueDate: "Apr 20, 2026" },
   ],
 
   cashAllocation: [
@@ -126,20 +126,20 @@ export const FINANCE_DATA = {
   ],
 
   vendorDues: {
-    total: "₹87L",
+    total: "₹0.87 L",
     breakdown: [
-      { vendor: "Global Fabrics Ltd", amount: "₹42L", status: "Overdue", dueDate: "Apr 3, 2026"    },
-      { vendor: "Swift Logistics",    amount: "₹25L", status: "Due soon", dueDate: "Apr 6, 2026"   },
-      { vendor: "Eco Packaging",      amount: "₹20L", status: "Due in 30d", dueDate: "Apr 7, 2026" },
+      { vendor: "Global Fabrics Ltd", amount: "₹0.42 L", status: "Overdue", dueDate: "Apr 3, 2026"    },
+      { vendor: "Swift Logistics",    amount: "₹0.25 L", status: "Due soon", dueDate: "Apr 6, 2026"   },
+      { vendor: "Eco Packaging",      amount: "₹0.20 L", status: "Due in 30d", dueDate: "Apr 7, 2026" },
     ],
   },
 
   expenses: [
-    { category: "Raw Materials",          amount: "₹12L",   change: "+15.2%", details: [{ desc: "Steel Sheets", amount: "₹6L" }, { desc: "Aluminum Extrusion", amount: "₹4.5L" }, { desc: "Fabric & Thread", amount: "₹1.5L" }] },
-    { category: "Factory Rent",           amount: "₹8.5L",  change: "0.0%",   details: [{ desc: "Main Unit Shed A", amount: "₹5L" }, { desc: "Warehouse B", amount: "₹3.5L" }] },
-    { category: "Electricity & Utilities",amount: "₹4.2L",  change: "+5.1%",  details: [{ desc: "Heavy Machinery Power", amount: "₹2.8L" }, { desc: "HVAC & Lighting", amount: "₹1L" }, { desc: "Water & Waste", amount: "₹0.4L" }] },
-    { category: "Salaries (Production)",  amount: "₹15L",   change: "+2.4%",  details: [{ desc: "Machine Operators (12)", amount: "₹9L" }, { desc: "Floor Supervisors (3)", amount: "₹4L" }, { desc: "Support Staff (4)", amount: "₹2L" }] },
-    { category: "Logistics & Shipping",   amount: "₹2.8L",  change: "-3.2%",  details: [{ desc: "Outbound Freight", amount: "₹1.8L" }, { desc: "Local Transports", amount: "₹0.7L" }, { desc: "Packaging Supp.", amount: "₹0.3L" }] },
+    { category: "Raw Materials",          amount: "₹1.2 L",   change: "+15.2%", details: [{ desc: "Steel Sheets", amount: "₹0.60 L" }, { desc: "Aluminum Extrusion", amount: "₹0.40 L" }, { desc: "Fabric & Thread", amount: "₹0.20 L" }] },
+    { category: "Factory Rent",           amount: "₹0.80 L",  change: "0.0%",   details: [{ desc: "Main Unit Shed A", amount: "₹0.50 L" }, { desc: "Warehouse B", amount: "₹0.30 L" }] },
+    { category: "Electricity & Utilities",amount: "₹0.40 L",  change: "+5.1%",  details: [{ desc: "Heavy Machinery Power", amount: "₹0.20 L" }, { desc: "HVAC & Lighting", amount: "₹0.10 L" }, { desc: "Water & Waste", amount: "₹0.10 L" }] },
+    { category: "Salaries (Production)",  amount: "₹1.5 L",   change: "+2.4%",  details: [{ desc: "Machine Operators (12)", amount: "₹0.90 L" }, { desc: "Floor Supervisors (3)", amount: "₹0.40 L" }, { desc: "Support Staff (4)", amount: "₹0.20 L" }] },
+    { category: "Logistics & Shipping",   amount: "₹0.20 L",  change: "-3.2%",  details: [{ desc: "Outbound Freight", amount: "₹0.10 L" }, { desc: "Local Transports", amount: "₹0.05 L" }, { desc: "Packaging Supp.", amount: "₹0.05 L" }] },
   ],
 
   productionLineup: [
@@ -157,9 +157,9 @@ export const FINANCE_DATA = {
 
   activities: [
     { text: "Order ORD-2408 moved to QC", type: "blue", time: "10 min ago" },
-    { text: "Payment received from Fashion Hub Inc - ₹1,85,000", type: "green", time: "25 min ago" },
+    { text: "Payment received from Fashion Hub Inc - ₹0.18 L", type: "green", time: "25 min ago" },
     { text: "Order ORD-2407 dispatched", type: "blue", time: "1 hour ago" },
     { text: "New order ORD-2409 created", type: "blue", time: "2 hours ago" },
-    { text: "Vendor payment completed - ₹82,000", type: "green", time: "3 hours ago" },
+    { text: "Vendor payment completed - ₹0.08 L", type: "green", time: "3 hours ago" },
   ]
 };

@@ -343,8 +343,16 @@ function EmployeeSidebar({ emp, onClose }) {
               <p className="font-semibold text-sm text-gray-700">Cost Layer</p>
               <div className="bg-gray-800 rounded-lg p-4 text-white">
                 <p className="text-xs text-gray-400">Monthly Salary</p>
-                <p className="text-3xl font-bold mt-1">₹{emp.salary.toLocaleString("en-IN")}</p>
-                <p className="text-xs text-gray-500 mt-1">Per annum: ₹{(emp.salary * 12).toLocaleString("en-IN")}</p>
+                <p className="text-3xl font-bold mt-1">
+                  ₹{emp.salary >= 100000 
+                    ? parseFloat((emp.salary / 100000).toFixed(2)) 
+                    : (emp.salary / 100000).toFixed(2)} L
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Per annum: ₹{emp.salary * 12 >= 100000 
+                    ? parseFloat((emp.salary * 12 / 100000).toFixed(2)) 
+                    : (emp.salary * 12 / 100000).toFixed(2)} L
+                </p>
               </div>
               <p className="font-semibold text-sm text-gray-700">Specialist Status</p>
               <div className={`rounded-lg p-4 border-2 flex items-center gap-4 ${emp.isSpecialist ? "border-green-300 bg-green-50" : "border-gray-200 bg-gray-50"}`}>
