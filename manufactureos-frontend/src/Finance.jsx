@@ -33,34 +33,6 @@ export default function Finance() {
 
   const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444'];
 
-  const monthlyData = [
-    { name: "Jan", Revenue: 85000,  Cost: 62000 },
-    { name: "Feb", Revenue: 92000,  Cost: 70000 },
-    { name: "Mar", Revenue: 75000,  Cost: 58000 },
-    { name: "Apr", Revenue: 95000,  Cost: 72000 },
-    { name: "May", Revenue: 88000,  Cost: 65000 },
-    { name: "Jun", Revenue: 105000, Cost: 78000 },
-  ];
-  const quarterlyData = [
-    { name: "Q1", Revenue: 252000, Cost: 190000 },
-    { name: "Q2", Revenue: 288000, Cost: 215000 },
-  ];
-
-  const topProfitOrders = [
-    { id: "ORD-2401", client: "Fashion Hub",     profit: "+₹5.2K" },
-    { id: "ORD-2399", client: "Urban Threads",   profit: "+₹4.8K" },
-    { id: "ORD-2406", client: "Modern Apparel",  profit: "+₹3.6K" },
-    { id: "ORD-2385", client: "StyleCraft",      profit: "+₹2.9K" },
-    { id: "ORD-2372", client: "Textile Masters", profit: "+₹2.1K" },
-  ];
-  const topLossOrders = [
-    { id: "ORD-2391", client: "Beta Brand",    loss: "-₹1.8K" },
-    { id: "ORD-2384", client: "Local Retail",  loss: "-₹1.2K" },
-    { id: "ORD-2342", client: "Quick Fashion", loss: "-₹850"  },
-    { id: "ORD-2311", client: "Street Wear",   loss: "-₹600"  },
-    { id: "ORD-2298", client: "Active Gear",   loss: "-₹420"  },
-  ];
-
   const statusStyle = {
     Paid:    "bg-green-100 text-green-600",
     Partial: "bg-yellow-100 text-yellow-700",
@@ -208,7 +180,7 @@ export default function Finance() {
           </div>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={viewMode === "monthly" ? monthlyData : quarterlyData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
+              <BarChart data={viewMode === "monthly" ? FINANCE_DATA.performance.monthly : FINANCE_DATA.performance.quarterly} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 11 }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 11 }} tickFormatter={v => formatCurrency(v)} />
@@ -261,7 +233,7 @@ export default function Finance() {
             Top 5 Profit Orders
           </h2>
           <div className="space-y-3">
-            {topProfitOrders.map((o, i) => (
+            {FINANCE_DATA.performance.topProfitOrders.map((o, i) => (
               <div key={i} className="flex justify-between items-center text-sm border-b border-gray-50 pb-2 last:border-0">
                 <div>
                   <p className="font-semibold text-gray-800">{o.id}</p>
@@ -280,7 +252,7 @@ export default function Finance() {
             Top 5 Loss Orders
           </h2>
           <div className="space-y-3">
-            {topLossOrders.map((o, i) => (
+            {FINANCE_DATA.performance.topLossOrders.map((o, i) => (
               <div key={i} className="flex justify-between items-center text-sm border-b border-gray-50 pb-2 last:border-0">
                 <div>
                   <p className="font-semibold text-gray-800">{o.id}</p>

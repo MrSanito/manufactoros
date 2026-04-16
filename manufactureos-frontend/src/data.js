@@ -79,6 +79,35 @@ export const FINANCE_DATA = {
     pendingPayments: "₹45L",
   },
 
+  performance: {
+    monthly: [
+      { name: "Jan", Revenue: 850000,  Cost: 620000 },
+      { name: "Feb", Revenue: 920000,  Cost: 700000 },
+      { name: "Mar", Revenue: 750000,  Cost: 580000 },
+      { name: "Apr", Revenue: 950000,  Cost: 720000 },
+      { name: "May", Revenue: 880000,  Cost: 650000 },
+      { name: "Jun", Revenue: 1050000, Cost: 780000 },
+    ],
+    quarterly: [
+      { name: "Q1", Revenue: 2520000, Cost: 1900000 },
+      { name: "Q2", Revenue: 2880000, Cost: 2150000 },
+    ],
+    topProfitOrders: [
+      { id: "ORD-2401", client: "Fashion Hub",     profit: "+₹52K" },
+      { id: "ORD-2399", client: "Urban Threads",   profit: "+₹48K" },
+      { id: "ORD-2406", client: "Modern Apparel",  profit: "+₹36K" },
+      { id: "ORD-2385", client: "StyleCraft",      profit: "+₹29K" },
+      { id: "ORD-2372", client: "Textile Masters", profit: "+₹21K" },
+    ],
+    topLossOrders: [
+      { id: "ORD-2391", client: "Beta Brand",    loss: "-₹18K" },
+      { id: "ORD-2384", client: "Local Retail",  loss: "-₹12K" },
+      { id: "ORD-2342", client: "Quick Fashion", loss: "-₹8.5K" },
+      { id: "ORD-2311", client: "Street Wear",   loss: "-₹6K" },
+      { id: "ORD-2298", client: "Active Gear",   loss: "-₹4.2K" },
+    ]
+  },
+
   payments: [
     { client: "Fashion Hub Inc", order: "ORD-2401", orderValue: "₹185K", amount: "₹185K", status: "Paid", dueDate: "Apr 5, 2026" },
     { client: "StyleCraft Ltd",  order: "ORD-2402", orderValue: "₹250K",  amount: "₹123K", status: "Partial", dueDate: "Apr 10, 2026" },
