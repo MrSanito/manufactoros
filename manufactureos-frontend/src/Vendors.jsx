@@ -1,91 +1,6 @@
 import { useState } from 'react';
 import { RiSearchLine, RiStarFill, RiWhatsappLine, RiPhoneLine, RiCloseLine, RiCalendarLine } from 'react-icons/ri';
-
-const VENDORS = [
-  {
-    id: "VEN-001",
-    name: "Kumar Textiles",
-    specialty: "Fabric Cutting & Stitching",
-    availability: "available",
-    rating: 4.8,
-    activeOrders: 2,
-    pendingAmount: "₹8,200",
-    contact: { phone: "+91 98765 11111", email: "kumar.textiles@vendor.com", address: "Industrial Area, Sector 12, Delhi" },
-    orders: [
-      { id: "ORD-2401", due: "Apr 8",  status: "In Progress" },
-      { id: "ORD-2405", due: "Apr 15", status: "Ready" },
-    ],
-    costBreakdown: { labour: "₹12,500", materials: "₹8,200", overhead: "₹2,300" },
-    paymentSummary: { totalPaid: "₹45,700", pending: "₹8,200" },
-    paymentHistory: [
-      { amount: "₹15,000", date: "Mar 28, 2026", status: "Paid" },
-      { amount: "₹12,500", date: "Mar 15, 2026", status: "Paid" },
-      { amount: "₹18,200", date: "Mar 1, 2026",  status: "Paid" },
-    ],
-    review: { rating: 4.8, text: "Excellent quality and timely delivery. Highly recommended for bulk orders." },
-  },
-  {
-    id: "VEN-002",
-    name: "Singh Manufacturing",
-    specialty: "Stitching & Embroidery",
-    availability: "busy",
-    rating: 4.5,
-    activeOrders: 2,
-    pendingAmount: "₹5,500",
-    contact: { phone: "+91 98765 22222", email: "singh@vendor.com", address: "Sector 14, Okhla, Delhi" },
-    orders: [
-      { id: "ORD-2390", due: "Apr 10", status: "In Progress" },
-      { id: "ORD-2395", due: "Apr 12", status: "In Progress" },
-    ],
-    costBreakdown: { labour: "₹10,500", materials: "₹6,100", overhead: "₹1,800" },
-    paymentSummary: { totalPaid: "₹32,400", pending: "₹5,500" },
-    paymentHistory: [
-      { amount: "₹10,000", date: "Mar 20, 2026", status: "Paid" },
-      { amount: "₹22,400", date: "Feb 15, 2026", status: "Paid" },
-    ],
-    review: { rating: 4.5, text: "Good stitching, but sometimes delayed during peak seasons." },
-  },
-  {
-    id: "VEN-003",
-    name: "Patel Garments",
-    specialty: "Finishing & Quality Control",
-    availability: "available",
-    rating: 4.7,
-    activeOrders: 1,
-    pendingAmount: "₹3,200",
-    contact: { phone: "+91 98765 33333", email: "patel@vendor.com", address: "Sector 1, Surat, Gujarat" },
-    orders: [
-      { id: "ORD-2410", due: "May 2", status: "Ready" },
-    ],
-    costBreakdown: { labour: "₹5,500", materials: "₹2,200", overhead: "₹900" },
-    paymentSummary: { totalPaid: "₹15,200", pending: "₹3,200" },
-    paymentHistory: [
-      { amount: "₹15,200", date: "Mar 10, 2026", status: "Paid" },
-    ],
-    review: { rating: 4.7, text: "Very consistent quality control. Rarely find defects." },
-  },
-  {
-    id: "VEN-004",
-    name: "Sharma Industries",
-    specialty: "Complete Manufacturing",
-    availability: "available",
-    rating: 4.3,
-    activeOrders: 1,
-    pendingAmount: "₹2,800",
-    contact: { phone: "+91 98765 44444", email: "sharma@vendor.com", address: "Phase 2, Noida" },
-    orders: [
-      { id: "ORD-2422", due: "May 10", status: "In Progress" },
-    ],
-    costBreakdown: { labour: "₹8,000", materials: "₹4,500", overhead: "₹1,500" },
-    paymentSummary: { totalPaid: "₹20,000", pending: "₹2,800" },
-    paymentHistory: [
-      { amount: "₹20,000", date: "Feb 28, 2026", status: "Paid" },
-    ],
-    review: { rating: 4.3, text: "Good for end-to-end processing, but materials can be slightly expensive." },
-  },
-];
-
-const specialties = [...new Set(VENDORS.map(v => v.specialty))];
+import { VENDORS_LIST } from './data';
 
 function StarRow({ rating }) {
   return (
@@ -247,7 +162,9 @@ export default function Vendors() {
   const [specFilter, setSpecFilter] = useState("All");
   const [selectedVendor, setSelectedVendor] = useState(null);
 
-  const filtered = VENDORS.filter(v => {
+  const specialties = [...new Set(VENDORS_LIST.map(v => v.specialty))];
+
+  const filtered = VENDORS_LIST.filter(v => {
     const q = search.toLowerCase();
     const matchQ     = v.name.toLowerCase().includes(q) || v.specialty.toLowerCase().includes(q) || v.id.toLowerCase().includes(q);
     const matchAvail = availFilter === "All" || v.availability === availFilter.toLowerCase();

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { RiDownloadLine, RiArrowUpLine, RiArrowDownLine, RiBuildingLine, RiSearchLine } from 'react-icons/ri';
+import toast from 'react-hot-toast';
+import { FINANCE_DATA } from './data';
 
 export default function Finance() {
   const [viewMode, setViewMode] = useState("monthly");
@@ -8,43 +10,27 @@ export default function Finance() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
 
+  const showNotification = (msg) => {
+    if (msg.toLowerCase().includes('executing') || msg.toLowerCase().includes('initiating')) {
+      toast.success(msg);
+    } else {
+      toast(msg);
+    }
+  };
+
   const formatCurrency = (value) => {
     if (value >= 100000) return `₹${+(value / 100000).toFixed(2)}L`;
     if (value >= 1000) return `₹${+(value / 1000).toFixed(2)}K`;
     return `₹${value.toLocaleString('en-IN')}`;
   };
 
-  const kpis = [
-    { title: "Total Revenue (YTD)", value: "₹4.82L", change: "+12.5%", up: true },
-    { title: "Receivables Collected", value: "₹3.94L", change: "+8.2%", up: true },
-    { title: "Payables Due", value: "₹87K", change: "-5.3%", up: false },
-    { title: "Receivables Pending", value: "₹45K", change: "-2.1%", up: false },
-    { title: "Profit (YTD)", value: "₹1.41L", change: "+15.2%", up: true },
-  ];
-
-  const payments = [
-    { client: "Fashion Hub Inc", order: "ORD-2401", orderValue: "₹18.5K", amount: "₹18.5K", status: "Paid" },
-    { client: "StyleCraft Ltd",  order: "ORD-2402", orderValue: "₹25K",   amount: "₹12.3K", status: "Partial" },
-    { client: "Urban Threads",   order: "ORD-2403", orderValue: "₹22.8K", amount: "₹22.8K", status: "Paid" },
-    { client: "Textile Masters", order: "ORD-2404", orderValue: "₹8.9K",  amount: "₹8.9K",  status: "Pending" },
-    { client: "Fashion Hub Inc", order: "ORD-2405", orderValue: "₹15.2K", amount: "₹15.2K", status: "Paid" },
-    { client: "Modern Apparel",  order: "ORD-2406", orderValue: "₹35K",   amount: "₹19.5K", status: "Partial" },
-    { client: "StyleCraft Ltd",  order: "ORD-2407", orderValue: "₹11.7K", amount: "₹11.7K", status: "Pending" },
-  ];
-
-  const filteredPayments = payments.filter(p => {
+  const filteredPayments = FINANCE_DATA.payments.filter(p => {
     const q = search.toLowerCase();
     const matchSearch = p.client.toLowerCase().includes(q) || p.order.toLowerCase().includes(q);
     const matchStatus = statusFilter === "All" || p.status === statusFilter;
     return matchSearch && matchStatus;
   });
 
-  const cashAllocation = [
-    { name: "Production",    value: 210000 },
-    { name: "Salaries",      value: 120000 },
-    { name: "Overheads",     value: 82000  },
-    { name: "Procurement",   value: 45000  },
-  ];
   const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444'];
 
   const monthlyData = [
@@ -73,21 +59,6 @@ export default function Finance() {
     { id: "ORD-2342", client: "Quick Fashion", loss: "-₹850"  },
     { id: "ORD-2311", client: "Street Wear",   loss: "-₹600"  },
     { id: "ORD-2298", client: "Active Gear",   loss: "-₹420"  },
-  ];
-  const vendorDues = {
-    total: "₹87K",
-    breakdown: [
-      { vendor: "Global Fabrics Ltd", amount: "₹42K", status: "Overdue"    },
-      { vendor: "Swift Logistics",    amount: "₹25K", status: "Due soon"   },
-      { vendor: "Eco Packaging",      amount: "₹20K", status: "Due in 30d" },
-    ],
-  };
-  const expenses = [
-    { category: "Raw Materials",          amount: "₹1.20L", change: "+15.2%", details: [{ desc: "Steel Sheets", amount: "₹60K" }, { desc: "Aluminum Extrusion", amount: "₹45K" }, { desc: "Fabric & Thread", amount: "₹15K" }] },
-    { category: "Factory Rent",           amount: "₹85K",   change: "0.0%",   details: [{ desc: "Main Unit Shed A", amount: "₹50K" }, { desc: "Warehouse B", amount: "₹35K" }] },
-    { category: "Electricity & Utilities",amount: "₹42K",   change: "+5.1%",  details: [{ desc: "Heavy Machinery Power", amount: "₹28K" }, { desc: "HVAC & Lighting", amount: "₹10K" }, { desc: "Water & Waste", amount: "₹4K" }] },
-    { category: "Salaries (Production)",  amount: "₹1.50L", change: "+2.4%",  details: [{ desc: "Machine Operators (12)", amount: "₹90K" }, { desc: "Floor Supervisors (3)", amount: "₹40K" }, { desc: "Support Staff (4)", amount: "₹20K" }] },
-    { category: "Logistics & Shipping",   amount: "₹28K",   change: "-3.2%",  details: [{ desc: "Outbound Freight", amount: "₹18K" }, { desc: "Local Transports", amount: "₹7K" }, { desc: "Packaging Supp.", amount: "₹3K" }] },
   ];
 
   const statusStyle = {
@@ -121,7 +92,10 @@ export default function Finance() {
           <option value="Partial">Partial</option>
           <option value="Pending">Pending</option>
         </select>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm w-full md:w-auto">
+        <button 
+          onClick={() => showNotification("Initiating Payment Record form...")}
+          className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm w-full md:w-auto active:scale-95 transition-all"
+        >
           + Record Payment
         </button>
       </div>
@@ -132,10 +106,14 @@ export default function Finance() {
           { label: "Generate Balance Sheet", cls: "bg-gray-800 text-white" },
           { label: "What needs attention ⚠️", cls: "bg-yellow-100 text-yellow-800 border border-yellow-200" },
           { label: "Cash outlook (30 days)",  cls: "bg-gray-100 text-gray-700 border border-gray-200" },
-          { label: "Where am I losing money?",cls: "bg-red-100 text-red-700 border border-red-200" },
-          { label: "Can I take more orders?", cls: "bg-green-100 text-green-700 border border-green-200" },
+          { label: "Where am i losing money?",cls: "bg-red-100 text-red-700 border border-red-200" },
+          { label: "Can i take more orders?", cls: "bg-green-100 text-green-700 border border-green-200" },
         ].map(b => (
-          <button key={b.label} className={`${b.cls} px-4 py-2 rounded-lg text-xs font-medium`}>
+          <button 
+            key={b.label} 
+            onClick={() => showNotification(`Executing: ${b.label}`)}
+            className={`${b.cls} px-4 py-2 rounded-lg text-xs font-medium transition-all active:scale-95`}
+          >
             {b.label}
           </button>
         ))}
@@ -143,7 +121,7 @@ export default function Finance() {
 
       {/* KPI CARDS */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-        {kpis.map((k, i) => (
+        {FINANCE_DATA.kpis.map((k, i) => (
           <div key={i} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <p className="text-xs text-gray-500">{k.title}</p>
             <p className="text-xl font-bold mt-1">{k.value}</p>
@@ -173,8 +151,8 @@ export default function Finance() {
                     {p.status}
                   </span>
                   <button
-                    onClick={() => alert(`Downloading invoice for ${p.order}...`)}
-                    className="w-7 h-7 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200"
+                    onClick={() => showNotification(`Downloading invoice for ${p.order}...`)}
+                    className="w-7 h-7 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200 active:scale-90 transition-all"
                   >
                     <RiDownloadLine className="text-gray-500 text-sm" />
                   </button>
@@ -193,8 +171,8 @@ export default function Finance() {
           <div className="h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={cashAllocation} cx="50%" cy="50%" innerRadius={55} outerRadius={90} paddingAngle={4} dataKey="value">
-                  {cashAllocation.map((_, index) => (
+                <Pie data={FINANCE_DATA.cashAllocation} cx="50%" cy="50%" innerRadius={55} outerRadius={90} paddingAngle={4} dataKey="value">
+                  {FINANCE_DATA.cashAllocation.map((_, index) => (
                     <Cell key={index} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
@@ -250,7 +228,7 @@ export default function Finance() {
             <div className="grid grid-cols-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
               <p className="col-span-2">Category</p><p>Amount</p><p className="text-right">MoM</p>
             </div>
-            {expenses.map((exp, i) => (
+            {FINANCE_DATA.expenses.map((exp, i) => (
               <div
                 key={i}
                 onClick={() => setSelectedExpense(exp)}
@@ -264,7 +242,10 @@ export default function Finance() {
               </div>
             ))}
           </div>
-          <button className="mt-4 w-full bg-gray-100 text-gray-600 text-xs py-2 rounded-lg hover:bg-gray-200">
+          <button 
+            onClick={() => showNotification("Loading all expense records...")}
+            className="mt-4 w-full bg-gray-100 text-gray-600 text-xs py-2 rounded-lg hover:bg-gray-200 active:scale-95 transition-all"
+          >
             View All Expenses
           </button>
         </div>
@@ -320,12 +301,17 @@ export default function Finance() {
           <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 flex justify-between items-center mb-4">
             <div>
               <p className="text-xs text-gray-500">Total Outstanding</p>
-              <p className="text-2xl font-bold">{vendorDues.total}</p>
+              <p className="text-2xl font-bold">{FINANCE_DATA.vendorDues.total}</p>
             </div>
-            <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-semibold">Action Needed</span>
+            <button 
+              onClick={() => showNotification("Opening Vendor Payment priority list...")}
+              className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-semibold active:scale-95 transition-all"
+            >
+              Action Needed
+            </button>
           </div>
           <div className="space-y-3">
-            {vendorDues.breakdown.map((d, i) => (
+            {FINANCE_DATA.vendorDues.breakdown.map((d, i) => (
               <div key={i} className="flex justify-between items-center text-sm border-b border-gray-50 pb-2 last:border-0">
                 <div>
                   <p className="font-medium text-gray-700 text-xs">{d.vendor}</p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Toaster } from 'react-hot-toast';
 import aiIcon from "./assets/AI.png";
 import Production from "./Production";
 import Finance from "./Finance";
@@ -8,6 +9,7 @@ import History from "./History";
 import Alerts from "./Alerts";
 import Inventory from "./Inventory";
 import { RiMenuLine, RiBellLine, RiAlertLine, RiMoneyDollarCircleLine, RiArchiveLine, RiLogoutBoxLine } from "react-icons/ri";
+import { FINANCE_DATA } from "./data";
 
 
 export default function App() {
@@ -18,6 +20,26 @@ export default function App() {
   
   return (
     <div className="flex min-h-screen bg-gray-100 overflow-x-hidden">
+      <Toaster 
+        position="bottom-right" 
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#fff',
+            color: '#334155',
+            padding: '12px 16px',
+            borderRadius: '10px',
+            border: '1px solid #e2e8f0',
+            fontSize: '14px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#22c55e',
+              secondary: '#fff',
+            },
+          },
+        }} 
+      />
       {/* Overlay for mobile sidebar */}
       {isSidebarOpen && (
         <div 
@@ -94,25 +116,25 @@ export default function App() {
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Total Orders</p>
-                <h2 className="text-2xl font-bold mt-1">248</h2>
+                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.totalOrders}</h2>
                 <p className="text-green-500 text-sm mt-1">↑ 12%</p>
               </div>
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Revenue</p>
-                <h2 className="text-2xl font-bold mt-1">₹4.82L</h2>
+                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.revenue}</h2>
                 <p className="text-green-500 text-sm mt-1">↑ 8%</p>
               </div>
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Delayed Orders</p>
-                <h2 className="text-2xl font-bold mt-1">12</h2>
+                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.delayedOrders}</h2>
                 <p className="text-green-500 text-sm mt-1">↓ 3%</p>
               </div>
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Pending Payments</p>
-                <h2 className="text-2xl font-bold mt-1">₹45K</h2>
+                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.pendingPayments}</h2>
                 <p className="text-red-500 text-sm mt-1">↑ 2%</p>
               </div>
 
@@ -125,58 +147,26 @@ export default function App() {
 <div className="bg-white p-6 rounded-xl shadow-sm">
   <h2 className="mb-4 font-semibold">Production Lineup</h2>
 
-  {/* ORDER 1 */}
-  <div className="border p-4 rounded-lg mb-4">
-    <p className="font-semibold mb-2">ORD-2401 • Fashion Hub</p>
+  {FINANCE_DATA.productionLineup.map((order, idx) => (
+    <div key={idx} className="border p-4 rounded-lg mb-4 last:mb-0">
+      <p className="font-semibold mb-2">{order.id} • {order.client}</p>
 
-    <div className="flex flex-wrap items-center gap-2 text-sm">
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Cutting</span>
-      <span>→</span>
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Stitching</span>
-      <span>→</span>
-      <span className="bg-blue-500 text-white font-semibold px-3 py-1 rounded">Finishing</span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">QC</span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">Dispatch</span>
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        {order.steps.map((step, sIdx) => (
+          <div key={sIdx} className="flex items-center gap-2">
+            <span className={`px-3 py-1 rounded font-semibold ${
+              sIdx < order.currentStep ? "bg-green-200" : 
+              sIdx === order.currentStep ? (order.alert ? "bg-blue-500 text-white border-4 border-red-500 flex items-center gap-1" : "bg-blue-500 text-white") : 
+              "bg-gray-200"
+            }`}>
+              {step} {sIdx === order.currentStep && order.alert && <RiAlertLine className="text-red-300" />}
+            </span>
+            {sIdx < order.steps.length - 1 && <span>→</span>}
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-
-  {/* ORDER 2 */}
-  <div className="border p-4 rounded-lg mb-4">
-    <p className="font-semibold mb-2">ORD-2402 • StyleCraft</p>
-
-    <div className="flex flex-wrap items-center gap-2 text-sm">
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Cutting</span>
-      <span>→</span>
-      <span className="bg-blue-500 text-white font-semibold border-4 border-red-500 px-3 py-1 rounded flex items-center gap-1">
-      <span className="flex items-center gap-1">Stitching <RiAlertLine className="text-red-300" /></span>
-      </span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">Finishing</span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">QC</span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">Dispatch</span>
-    </div>
-  </div>
-
-  {/* ORDER 3 */}
-  <div className="border p-4 rounded-lg">
-    <p className="font-semibold mb-2">ORD-2403 • Urban Threads</p>
-
-    <div className="flex flex-wrap items-center gap-2 text-sm">
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Cutting</span>
-      <span>→</span>
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Stitching</span>
-      <span>→</span>
-      <span className="bg-green-200 font-semibold px-3 py-1 rounded">Finishing</span>
-      <span>→</span>
-      <span className="bg-blue-500 text-white font-semibold px-3 py-1 rounded">QC</span>
-      <span>→</span>
-      <span className="bg-gray-200 font-semibold px-3 py-1 rounded">Dispatch</span>
-    </div>
-  </div>
+  ))}
 
 </div>
 
@@ -202,37 +192,15 @@ export default function App() {
 
   <div className="divide-y">
 
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Fashion Hub Inc</p>
-        <p className="text-xs text-gray-400">Due: Apr 5, 2026</p>
+    {FINANCE_DATA.payments.filter(p => p.status !== "Paid").map((p, i) => (
+      <div key={i} className="flex justify-between py-3">
+        <div>
+          <p className="font-medium">{p.client}</p>
+          <p className="text-xs text-gray-400">Due: {p.dueDate}</p>
+        </div>
+        <p className="font-medium">{p.amount}</p>
       </div>
-      <p className="font-medium">₹18,500</p>
-    </div>
-
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Urban Threads</p>
-        <p className="text-xs text-gray-400">Due: Apr 8, 2026</p>
-      </div>
-      <p className="font-medium">₹12,300</p>
-    </div>
-
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">StyleCraft Ltd</p>
-        <p className="text-xs text-gray-400">Due: Apr 10, 2026</p>
-      </div>
-      <p className="font-medium">₹8,900</p>
-    </div>
-
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Textile Masters</p>
-        <p className="text-xs text-gray-400">Due: Apr 12, 2026</p>
-      </div>
-      <p className="font-medium">₹5,300</p>
-    </div>
+    ))}
 
   </div>
 </div>
@@ -242,29 +210,15 @@ export default function App() {
 
   <div className="divide-y">
 
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Fabric Suppliers Co</p>
-        <p className="text-xs text-gray-400">Due: Apr 3, 2026</p>
+    {FINANCE_DATA.vendorDues.breakdown.map((d, i) => (
+      <div key={i} className="flex justify-between py-3">
+        <div>
+          <p className="font-medium">{d.vendor}</p>
+          <p className="text-xs text-gray-400">Due: {d.dueDate}</p>
+        </div>
+        <p className={`font-medium ${d.status === 'Overdue' ? 'text-red-500' : 'text-yellow-600'}`}>{d.amount}</p>
       </div>
-      <p className="font-medium text-red-500">₹8,200</p>
-    </div>
-
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Thread Masters</p>
-        <p className="text-xs text-gray-400">Due: Apr 6, 2026</p>
-      </div>
-      <p className="font-medium text-red-500">₹3,500</p>
-    </div>
-
-    <div className="flex justify-between py-3">
-      <div>
-        <p className="font-medium">Dye Solutions</p>
-        <p className="text-xs text-gray-400">Due: Apr 7, 2026</p>
-      </div>
-      <p className="font-medium text-red-500">₹2,800</p>
-    </div>
+    ))}
 
   </div>
 </div>
@@ -318,42 +272,22 @@ export default function App() {
 
     <div className="space-y-4">
 
-      {/* ITEM */}
-      <div className="border rounded-lg p-4">
+    {FINANCE_DATA.inventory.map((item, i) => (
+      <div key={i} className="border rounded-lg p-4">
         <div className="flex justify-between">
-          <p className="font-medium">Fabric</p>
-          <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">normal</span>
+          <p className="font-medium">{item.name}</p>
+          <span className={`text-xs px-2 py-1 rounded font-semibold ${item.level === 'low' ? 'bg-yellow-100 text-yellow-600' : 'bg-green-100 text-green-600'}`}>
+            {item.level}
+          </span>
         </div>
-        <p className="text-sm text-gray-500 mt-1">450 meters</p>
+        <p className="text-sm text-gray-500 mt-1">{item.quantity}</p>
+        {item.alert && (
+          <div className="mt-3 text-xs bg-orange-100 text-orange-600 p-2 rounded">
+            {item.alert}
+          </div>
+        )}
       </div>
-
-      <div className="border rounded-lg p-4">
-        <div className="flex justify-between">
-          <p className="font-medium">Thread</p>
-          <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">low</span>
-        </div>
-        <p className="text-sm text-gray-500 mt-1">180 spools</p>
-
-        <div className="mt-3 text-xs bg-orange-100 text-orange-600 p-2 rounded">
-          AI: Low stock predicted next 7 days
-        </div>
-      </div>
-
-      <div className="border rounded-lg p-4">
-        <div className="flex justify-between">
-          <p className="font-medium">Dye</p>
-          <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">normal</span>
-        </div>
-        <p className="text-sm text-gray-500 mt-1">85 liters</p>
-      </div>
-
-      <div className="border rounded-lg p-4">
-        <div className="flex justify-between">
-          <p className="font-medium">Buttons</p>
-          <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">normal</span>
-        </div>
-        <p className="text-sm text-gray-500 mt-1">5000 pieces</p>
-      </div>
+    ))}
 
     </div>
   </div>
@@ -364,30 +298,12 @@ export default function App() {
 
     <div className="space-y-4 text-sm">
 
-      <div>
-        <p className="text-blue-500">• Order ORD-2408 moved to QC</p>
-        <p className="text-gray-400 text-xs">10 min ago</p>
+    {FINANCE_DATA.activities.map((act, i) => (
+      <div key={i}>
+        <p className={`${act.type === 'blue' ? 'text-blue-500' : 'text-green-500'}`}>• {act.text}</p>
+        <p className="text-gray-400 text-xs">{act.time}</p>
       </div>
-
-      <div>
-        <p className="text-green-500">• Payment received from Fashion Hub Inc - ₹18,500</p>
-        <p className="text-gray-400 text-xs">25 min ago</p>
-      </div>
-
-      <div>
-        <p className="text-blue-500">• Order ORD-2407 dispatched</p>
-        <p className="text-gray-400 text-xs">1 hour ago</p>
-      </div>
-
-      <div>
-        <p className="text-blue-500">• New order ORD-2409 created</p>
-        <p className="text-gray-400 text-xs">2 hours ago</p>
-      </div>
-
-      <div>
-        <p className="text-green-500">• Vendor payment completed - ₹8,200</p>
-        <p className="text-gray-400 text-xs">3 hours ago</p>
-      </div>
+    ))}
 
     </div>
   </div>
