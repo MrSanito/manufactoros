@@ -342,16 +342,11 @@ function EmployeeSidebar({ emp, onClose }) {
             <div className="space-y-4">
               <p className="font-semibold text-sm text-gray-700">Cost Layer</p>
               <div className="bg-gray-800 rounded-lg p-4 text-white">
-                <p className="text-xs text-gray-400">Monthly Salary</p>
                 <p className="text-3xl font-bold mt-1">
-                  ₹{emp.salary >= 100000 
-                    ? parseFloat((emp.salary / 100000).toFixed(2)) 
-                    : (emp.salary / 100000).toFixed(2)} L
+                  ₹{emp.salary / 1000}k
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  Per annum: ₹{emp.salary * 12 >= 100000 
-                    ? parseFloat((emp.salary * 12 / 100000).toFixed(2)) 
-                    : (emp.salary * 12 / 100000).toFixed(2)} L
+                  Per annum: ₹{(emp.salary * 12) / 1000}k
                 </p>
               </div>
               <p className="font-semibold text-sm text-gray-700">Specialist Status</p>

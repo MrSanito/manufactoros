@@ -18,14 +18,16 @@ export default function Finance() {
     }
   };
 
+  // Helper to remove decimals from preformatted "₹X.Y L" strings
+  const cleanPreformatted = (val) => {
+    if (typeof val !== 'string') return val;
+    return val.replace(/\.\d+/, '');
+  };
+
   const formatCurrency = (value) => {
-    // Matches the 'reliable' scale: 390k -> 39.0L (/10000) and 50k -> 0.50L (/100000)
-    let num = value >= 100000 ? value / 10000 : value / 100000;
-    
-    if (num >= 1) {
-      return `₹${parseFloat(num.toFixed(2))} L`;
-    }
-    return `₹${num.toFixed(2)} L`;
+    // For unformatted numbers, we ADD decimals as requested
+    let num = value / 100000;
+    return `₹${num.toFixed(1)} L`;
   };
 
   const filteredPayments = FINANCE_DATA.payments.filter(p => {
@@ -100,7 +102,7 @@ export default function Finance() {
         {FINANCE_DATA.kpis.map((k, i) => (
           <div key={i} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <p className="text-xs text-gray-500">{k.title}</p>
-            <p className="text-xl font-bold mt-1">{k.value}</p>
+            <p className="text-xl font-bold mt-1">{cleanPreformatted(k.value)}</p>
             <p className={`text-xs mt-1 font-medium ${k.up ? "text-green-500" : "text-red-500"}`}>{k.change}</p>
           </div>
         ))}
@@ -277,7 +279,7 @@ export default function Finance() {
           <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 flex justify-between items-center mb-4">
             <div>
               <p className="text-xs text-gray-500">Total Outstanding</p>
-              <p className="text-2xl font-bold">{FINANCE_DATA.vendorDues.total}</p>
+              <p className="text-2xl font-bold">{cleanPreformatted(FINANCE_DATA.vendorDues.total)}</p>
             </div>
             <button 
               onClick={() => showNotification("Opening Vendor Payment priority list...")}

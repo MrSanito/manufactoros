@@ -2,6 +2,12 @@ import { useState } from 'react';
 import { RiSearchLine, RiStarFill, RiWhatsappLine, RiPhoneLine, RiCloseLine, RiCalendarLine } from 'react-icons/ri';
 import { VENDORS_LIST } from './data';
 
+// Helper to remove decimals from preformatted "₹X.Y L" strings
+const cleanPreformatted = (val) => {
+  if (typeof val !== 'string') return val;
+  return val.replace(/\.\d+/, '');
+};
+
 function StarRow({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -234,7 +240,7 @@ export default function Vendors() {
             {/* STATS */}
             <div className="text-xs text-gray-600 mb-3 space-y-1">
               <p>Active Orders: <span className="font-semibold text-gray-800">{v.activeOrders}</span></p>
-              <p>Pending: <span className="font-semibold text-red-500">{v.pendingAmount}</span></p>
+              <p>Pending: <span className="font-semibold text-red-500">{cleanPreformatted(v.pendingAmount)}</span></p>
             </div>
 
             {/* ACTIONS */}

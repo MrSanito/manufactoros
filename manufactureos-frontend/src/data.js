@@ -12,12 +12,12 @@ export const VENDORS_LIST = [
       { id: "ORD-2401", due: "Apr 8",  status: "In Progress" },
       { id: "ORD-2405", due: "Apr 15", status: "Ready" },
     ],
-    costBreakdown: { labour: "₹0.15 L", materials: "₹0.22 L", overhead: "₹0.05 L" },
-    paymentSummary: { totalPaid: "₹1.57 L", pending: "₹0.42 L" },
+    costBreakdown: { labour: "₹1.5 L", materials: "₹2.2 L", overhead: "₹0.5 L" },
+    paymentSummary: { totalPaid: "₹5.5 L", pending: "₹4.2 L" },
     paymentHistory: [
-      { amount: "₹0.15 L", date: "Mar 28, 2026", status: "Paid" },
-      { amount: "₹0.12 L", date: "Mar 15, 2026", status: "Paid" },
-      { amount: "₹0.18 L", date: "Mar 1, 2026",  status: "Paid" },
+      { amount: "₹1.5 L", date: "Mar 28, 2026", status: "Paid" },
+      { amount: "₹1.2 L", date: "Mar 15, 2026", status: "Paid" },
+      { amount: "₹1.8 L", date: "Mar 1, 2026",  status: "Paid" },
     ],
     review: { rating: 4.8, text: "Excellent quality and timely delivery. Highly recommended for bulk orders." },
   },
@@ -34,11 +34,11 @@ export const VENDORS_LIST = [
       { id: "ORD-2390", due: "Apr 10", status: "In Progress" },
       { id: "ORD-2395", due: "Apr 12", status: "In Progress" },
     ],
-    costBreakdown: { labour: "₹0.12 L", materials: "₹0.11 L", overhead: "₹0.02 L" },
-    paymentSummary: { totalPaid: "₹1.24 L", pending: "₹0.25 L" },
+    costBreakdown: { labour: "₹1.2 L", materials: "₹1.1 L", overhead: "₹0.2 L" },
+    paymentSummary: { totalPaid: "₹3.2 L", pending: "₹2.5 L" },
     paymentHistory: [
-      { amount: "₹0.10 L", date: "Mar 20, 2026", status: "Paid" },
-      { amount: "₹0.22 L", date: "Feb 15, 2026", status: "Paid" },
+      { amount: "₹1.0 L", date: "Mar 20, 2026", status: "Paid" },
+      { amount: "₹2.2 L", date: "Feb 15, 2026", status: "Paid" },
     ],
     review: { rating: 4.5, text: "Good stitching, but sometimes delayed during peak seasons." },
   },
@@ -49,15 +49,15 @@ export const VENDORS_LIST = [
     availability: "available",
     rating: 4.7,
     activeOrders: 1,
-    pendingAmount: "₹2 L",
+    pendingAmount: "₹2.0 L",
     contact: { phone: "+91 98765 33333", email: "patel@vendor.com", address: "Sector 1, Surat, Gujarat" },
     orders: [
       { id: "ORD-2410", due: "May 2", status: "Ready" },
     ],
-    costBreakdown: { labour: "₹0.15 L", materials: "₹0.02 L", overhead: "₹0.03 L" },
-    paymentSummary: { totalPaid: "₹0.82 L", pending: "₹0.20 L" },
+    costBreakdown: { labour: "₹1.5 L", materials: "₹0.2 L", overhead: "₹0.3 L" },
+    paymentSummary: { totalPaid: "₹2.8 L", pending: "₹2.0 L" },
     paymentHistory: [
-      { amount: "₹0.15 L", date: "Mar 10, 2026", status: "Paid" },
+      { amount: "₹1.5 L", date: "Mar 10, 2026", status: "Paid" },
     ],
     review: { rating: 4.7, text: "Very consistent quality control. Rarely find defects." },
   },
@@ -65,18 +65,18 @@ export const VENDORS_LIST = [
 
 export const FINANCE_DATA = {
   kpis: [
-    { title: "Total Revenue (YTD)", value: "₹48.2 L", change: "+12.5%", up: true, dashboardLabel: "Revenue" },
-    { title: "Receivables Collected", value: "₹39.4 L", change: "+8.2%", up: true },
+    { title: "Total Revenue (YTD)", value: "₹54 L", change: "+12.5%", up: true, dashboardLabel: "Revenue" },
+    { title: "Receivables Collected", value: "₹42 L", change: "+8.2%", up: true },
     { title: "Payables Due", value: "₹8.7 L", change: "-5.3%", up: false },
-    { title: "Receivables Pending", value: "₹4.5 L", change: "-2.1%", up: false, dashboardLabel: "Pending Payments" },
-    { title: "Profit (YTD)", value: "₹15.1 L", change: "+15.2%", up: true },
+    { title: "Receivables Pending", value: "₹12 L", change: "-2.1%", up: false, dashboardLabel: "Pending Payments" },
+    { title: "Profit (YTD)", value: "₹13.5 L", change: "+15.2%", up: true },
   ],
   
   overview: {
     totalOrders: 2480,
     delayedOrders: 120,
-    revenue: "₹48.2 L",
-    pendingPayments: "₹4.5 L",
+    revenue: "₹54 L",
+    pendingPayments: "₹12 L",
   },
 
   performance: {
@@ -126,11 +126,11 @@ export const FINANCE_DATA = {
   ],
 
   vendorDues: {
-    total: "₹0.87 L",
+    total: "₹8.7 L",
     breakdown: [
-      { vendor: "Global Fabrics Ltd", amount: "₹0.42 L", status: "Overdue", dueDate: "Apr 3, 2026"    },
-      { vendor: "Swift Logistics",    amount: "₹0.25 L", status: "Due soon", dueDate: "Apr 6, 2026"   },
-      { vendor: "Eco Packaging",      amount: "₹0.20 L", status: "Due in 30d", dueDate: "Apr 7, 2026" },
+      { vendor: "Kumar Textiles",     amount: "₹4.2 L", status: "Overdue", dueDate: "Apr 3, 2026"    },
+      { vendor: "Singh Manufacturing", amount: "₹2.5 L", status: "Due soon", dueDate: "Apr 6, 2026"   },
+      { vendor: "Patel Garments",      amount: "₹2.0 L", status: "Due in 30d", dueDate: "Apr 7, 2026" },
     ],
   },
 

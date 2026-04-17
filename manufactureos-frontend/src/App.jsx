@@ -11,6 +11,12 @@ import Inventory from "./Inventory";
 import { RiMenuLine, RiBellLine, RiAlertLine, RiMoneyDollarCircleLine, RiArchiveLine, RiLogoutBoxLine } from "react-icons/ri";
 import { FINANCE_DATA } from "./data";
 
+// Helper to remove decimals from preformatted "₹X.Y L" strings
+const cleanPreformatted = (val) => {
+  if (typeof val !== 'string') return val;
+  return val.replace(/\.\d+/, '');
+};
+
 
 export default function App() {
   const [page, setPage] = useState("Dashboard");
@@ -122,7 +128,7 @@ export default function App() {
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Revenue</p>
-                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.revenue}</h2>
+                <h2 className="text-2xl font-bold mt-1">{cleanPreformatted(FINANCE_DATA.overview.revenue)}</h2>
                 <p className="text-green-500 text-sm mt-1">↑ 8%</p>
               </div>
 
@@ -134,7 +140,7 @@ export default function App() {
 
               <div className="bg-white p-5 rounded-xl shadow-sm">
                 <p className="text-gray-500 text-sm">Pending Payments</p>
-                <h2 className="text-2xl font-bold mt-1">{FINANCE_DATA.overview.pendingPayments}</h2>
+                <h2 className="text-2xl font-bold mt-1">{cleanPreformatted(FINANCE_DATA.overview.pendingPayments)}</h2>
                 <p className="text-red-500 text-sm mt-1">↑ 2%</p>
               </div>
 
